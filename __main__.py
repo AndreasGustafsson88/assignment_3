@@ -5,11 +5,6 @@ from bank_system_oop.models.bank import Bank
 Course: Effective Programming - Assignment 3
 Student: Andreas Gustafsson
 
-FRÅGOR.
-
-1. När man implementerar abstrakta klasser får jag inte direkt arvet av metoderna. Det gör att jag måste skriva alla 
-    metoder 2 ggr, en gång för varje subklass. se user som exempel
-
 """
 
 

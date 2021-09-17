@@ -11,7 +11,7 @@ The project contains an OOP solution as well as a functional. Emphasis is on the
 ### Main problem encountered
 
 ***Slightly self inflected since I:***
-* *Wanted the bank to have more than 1 customer with the same first and last name*
+* *Wanted the bank to have more than 1 customer with the same first and last name and a dict structure for fast search*
 * *Used different user types with different properties and only wanted one search function*
 * *Really didn't want to iterate over all user data for the search*
 
