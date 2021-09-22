@@ -1,15 +1,17 @@
+"""
+Home assignment 3.
+
+Course: Effective Programming - Assignment 3.
+Student: Andreas Gustafsson.
+"""
+
 from bank_system_functional.models.functions import *
 from bank_system_oop.models.bank import Bank
 
-"""
-Course: Effective Programming - Assignment 3
-Student: Andreas Gustafsson
-"""
-
 
 def simple_banking_management_oop():
-    # Initiate bank
-    bank = Bank('My_bank')
+    """Run main script for running usage examples of oop bank management system."""
+    bank = Bank('My_bank')  # Initiate bank
 
     # Create users, choose between private and company, return user directly if needed
     ricky = bank.register_user('private', 'Ricky', 'Wysocki', 222222)
@@ -53,7 +55,7 @@ def simple_banking_management_oop():
 
 
 def simple_banking_management_functional():
-
+    """Run main script for running usage examples of functional bank management system."""
     create_user('private', **USERS['Andreas'])
     create_user('company', **USERS['carrot_inc'])
 
@@ -74,4 +76,4 @@ def simple_banking_management_functional():
 
 if __name__ == "__main__":
     simple_banking_management_oop()
-    # simple_banking_management_functional()
+    simple_banking_management_functional()

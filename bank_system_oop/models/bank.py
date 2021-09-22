@@ -14,7 +14,8 @@ class Bank:
     ...
     Attributes
     ----------
-    USER_TYPES: dict: cls - stores the types of users that the bank has.
+    cls:
+        USER_TYPES: dict - Store the types of users that the bank has.
     name: str - name of the bank.
     _users: dict - Stores all the user data.
     _index: Mapper - Mapper class to handle all key / value mapping for searches.
@@ -50,7 +51,6 @@ class Bank:
             123456: User(Paul, Mcbeth, social_id_nr)
             }
         """
-
         self._users[self._index.mapping_value] = new_user
 
     def register_user(self, user: str, *args) -> User:
@@ -66,16 +66,14 @@ class Bank:
     @filter_result
     def search_user(self, *args) -> list:
         """
-        Search that works on both private and company customer and with different search arguments without iterating
-        over every user.
+        Search that works on both private and company customer and for different search arguments.
 
-        Gets a user object for every match. Returns list that is filtered through @filter_result decorator depending on
+        Get a user object for every match. Returns list that is filtered through @filter_result decorator depending on
         how many matches was found.
         """
-
         indexes = self._index.search_mapping_nrs(*args)  # pass all search argument to search for mapping_nrs.
 
-        # return each user that had matching mapping_nrs for every argument.
+        # Return each user that had matching mapping_nrs for every argument. Return None if no matches were found.
         return [self._users.get(i) for i in indexes] if indexes else None
 
     def __repr__(self):

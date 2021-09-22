@@ -1,7 +1,6 @@
 """Main module for holding abstract Account class."""
 
 from abc import ABC, abstractmethod
-from bank_system_oop.models.custom_error import InsufficientFundsException
 from bank_system_oop.utils.helper_functions import random_number_generator
 
 
@@ -12,18 +11,19 @@ class Account(ABC):
     ...
     Attributes
     ----------
-    _account_numbers: Iterator: cls - Generates a random number
-    _amount: int - balance of the account
-    _currency: str - account currency
-    _nr: int - unique identifier for each account
-    balance: int - Checks the current amount
+    cls:
+        _account_numbers: Iterator - Generate a random number.
+    _amount: int - Balance of the account.
+    _currency: str - Account currency.
+    _nr: int - Unique identifier for each account.
 
     Methods
     -------
-    _deposit: - makes a deposit
-    _withdraw: - makes a withdrawal if enough funds
-    generate: cls - Creates instance of the class
-    sufficient_funds - Checks if a withdrawal is possible
+    cls:
+        generate - Create an instance of itself.
+    deposit - Make a deposit.
+    withdraw - Make a withdrawal if enough funds.
+    __repr__ - String representation of class properties.
     """
 
     _account_numbers = random_number_generator(100_000, 999_999)
@@ -35,28 +35,20 @@ class Account(ABC):
         self._nr = next(self._account_numbers)
 
     @classmethod
+    @abstractmethod
     def generate(cls):
-        """Class method for creating instance of class."""
-        return cls()
+        """Abstract method."""
+        pass
 
-    def deposit(self, amount: int) -> None:
-        """Add amount to the existing account balance."""
-        self._amount += amount
+    @abstractmethod
+    def deposit(self, amount):
+        """Abstract method."""
+        pass
 
-    def withdraw(self, amount: int) -> None:
-        """Make a withdrawal if sufficient funds on the account else prints an exception with explanation."""
-        try:
-            if self.sufficient_funds(amount):
-                self._amount -= amount
-            else:
-                raise InsufficientFundsException(self._amount, amount, self._currency)
-
-        except InsufficientFundsException as e:
-            print(e)
-
-    def sufficient_funds(self, amount: int) -> bool:
-        """Check if a withdrawal is possible."""
-        return self._amount >= amount
+    @abstractmethod
+    def withdraw(self, amount):
+        """Abstract method."""
+        pass
 
     def __repr__(self):
         """Create a string representation of class properties."""

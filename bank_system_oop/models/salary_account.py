@@ -1,40 +1,52 @@
+"""Main module for holding SalaryAccount class."""
+
 from bank_system_oop.models.account import Account
+from bank_system_oop.models.custom_error import InsufficientFundsException
 
 
 class SalaryAccount(Account):
     """
     Class for salary accounts for the users of the bank, subclass of Account.
+
     ...
-
-    Attributes - Inherited
-    ----------------------
-    _account_numbers: generator: cls -- Generates a random number
-    _amount: int -- balance of the account
-    _currency: str -- account currency
-    _nr: int -- unique identifier for each account
-    balance: int - Checks the current amount
-
     Attributes
     ----------
-    interest_rate: float - interest rate for current account type. Default 0.02
+    interest_rate: float - Interest rate for current account type. Default 0.02.
 
-    Methods - Inherited
+    Methods
     -------
-    generate: cls - Creates instance of the class
-    _deposit - makes a deposit
-    _withdraw - makes a withdrawal
-    sufficient_funds - checks if a withdrawal is possible
+    cls:
+        generate - Create instance of the class.
+    deposit - Make a deposit.
+    withdraw - Make a withdrawal if sufficient funds.
+    sufficient_funds - Check if a withdrawal is possible.
     """
 
     def __init__(self):
+        """Init properties."""
         self.interest_rate: float = 0.02
         super().__init__()
 
+    @classmethod
+    def generate(cls):
+        """Class method for creating instance of class."""
+        return cls()
+
     def deposit(self, amount: int) -> None:
-        super(SalaryAccount, self).deposit(amount)
+        """Add amount to the existing account balance."""
+        self._amount += amount
 
     def withdraw(self, amount: int) -> None:
-        super(SalaryAccount, self).withdraw(amount)
+        """Make a withdrawal if sufficient funds on the account else print an exception with explanation."""
+        try:
+            if self.sufficient_funds(amount):
+                self._amount -= amount
+            else:
+                raise InsufficientFundsException(self._amount, amount, self._currency)
+
+        except InsufficientFundsException as e:
+            print(e)
 
     def sufficient_funds(self, amount: int) -> bool:
-        return super(SalaryAccount, self).sufficient_funds(amount)
+        """Check if a withdrawal is possible."""
+        return self._amount >= amount

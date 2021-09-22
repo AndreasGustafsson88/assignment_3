@@ -1,3 +1,5 @@
+"""Main file for holding all information about globals."""
+
 BANK = {}
 USER_TYPES = ['private', 'company']
 ACCOUNT_TYPES = ['savings', 'salary']
