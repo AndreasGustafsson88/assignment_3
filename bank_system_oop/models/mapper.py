@@ -29,7 +29,7 @@ class Mapper(dict):
 
         self.mapping_value = next(self._mapping_gen)
 
-    def create_mapping(self, args):
+    def create_mapping(self, args: tuple):
         """
         Create mapping
         ...
@@ -60,8 +60,10 @@ class Mapper(dict):
         ...
 
         Fetches all mapping_nrs for matching result for each argument in the search.
-        If no match is found for that arg result for that arg is an empty string.
-        (We need an iterable that returns None).
+
+        Matching numbers are added to matching_index.
+        If an argument doesn't have a match it will append an empty string.
+        (We need an iterable that returns None when iterating in the reduce function).
 
         E.g.
 

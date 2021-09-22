@@ -7,14 +7,14 @@ def random_number_generator(a: int, b: int) -> Iterator[int]:
     """
     Generates a random number between a and b.
 
-    Creates an iterator with a list of randomly generated numbers between a - b.
-    Yields next number for the list while there are still numbers in the iterator.
+    Creates a list with all numbers from a to b.
+    Runs while there are numbers in the list. For each cycle yields a random number and removes it.
     """
 
-    numbers = filter(lambda n: n, random.sample(range(a, b), b - a))
+    numbers = [val for val in range(a, b)]
 
     while numbers:
-        yield next(numbers)
+        yield numbers.pop(random.randint(0, len(numbers) - 1))
 
 number_gen = random_number_generator(100, 999)
 

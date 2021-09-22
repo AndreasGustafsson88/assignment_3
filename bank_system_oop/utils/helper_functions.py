@@ -19,7 +19,7 @@ def filter_result(func):
 
         return 'No match!' if not result \
             else result[0] if len(result) == 1 \
-            else f'Got more than one mach for search, please specify search:\n {[[user.get_properties()] for user in result]}!'
+            else f'Found more than one match, please specify search:\n {[user.get_properties() for user in result]}!'
 
     return wrapper
 
@@ -28,11 +28,12 @@ def random_number_generator(a: int, b: int) -> Iterator[int]:
     """
     Generates a random number between a and b.
 
-    Creates an Iterator with a list of randomly generated numbers between a - b.
-    Yields next number for the list while there are numbers in the Iterator.
+    Creates a list with all numbers from a to b.
+    Runs while there are numbers in the list. For each cycle yields a random number and removes it.
     """
 
-    numbers = filter(lambda n: n, random.sample(range(a, b), b - a))
+    numbers = [val for val in range(a, b)]
 
     while numbers:
-        yield next(numbers)
+        yield numbers.pop(random.randint(0, len(numbers) - 1))
+

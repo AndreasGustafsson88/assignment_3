@@ -48,7 +48,7 @@ Sacrificing som space for the application but greatly increases search speed.
 
 **Old search**
 
-* Average search time over 10 iterations with 1_000_000 users and 4 different searches: 6191224010.0
+* Average search time over 10 iterations with 1_000_000 users and 4 different searches: 6191224010.0 ns
 
 **New search**
 * 9 / 10 searches took 0 ns
@@ -58,9 +58,9 @@ Result is about 600_000 times faster for this example.
 
 ### Thoughts on improvements
 
-* Use different mapping values, not sure int is the best. Nr generator takes some time to initiate with massive numbers.
-* Would be fun to try and use a list structure and have the mapping class map to an index position
-* Use numpy for handling list operations
+* Use different mapping values, not sure int is the best.
+* Would be fun to try and use a list structure and have the mapping class map to an index position.
+* Use numpy for handling list operations.
 
 ### Usage Example
 

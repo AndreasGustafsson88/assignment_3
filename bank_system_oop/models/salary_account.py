@@ -29,3 +29,12 @@ class SalaryAccount(Account):
     def __init__(self):
         self.interest_rate: float = 0.02
         super().__init__()
+
+    def deposit(self, amount: int) -> None:
+        super(SalaryAccount, self).deposit(amount)
+
+    def withdraw(self, amount: int) -> None:
+        super(SalaryAccount, self).withdraw(amount)
+
+    def sufficient_funds(self, amount: int) -> bool:
+        return super(SalaryAccount, self).sufficient_funds(amount)

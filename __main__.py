@@ -4,7 +4,6 @@ from bank_system_oop.models.bank import Bank
 """
 Course: Effective Programming - Assignment 3
 Student: Andreas Gustafsson
-
 """
 
 
@@ -13,7 +12,7 @@ def simple_banking_management_oop():
     bank = Bank('My_bank')
 
     # Create users, choose between private and company, return user directly if needed
-    andreas = bank.register_user('private', 'Ricky', 'Wysocki', 222222)
+    ricky = bank.register_user('private', 'Ricky', 'Wysocki', 222222)
     bank.register_user('company', 'E_will_inc', 666666)
     bank.register_user('private', 'Paul', 'Mcbeth', 111111)
     bank.register_user('private', 'Page', 'Pierce', 121212)
@@ -37,24 +36,23 @@ def simple_banking_management_oop():
     print(company_user)
 
     # Register an account, specify which type -> None
-    andreas.register_account('savings')
-    andreas.register_account('salary')
+    ricky.register_account('savings')
+    ricky.register_account('salary')
 
     # Deposit to specified account or access directly from account
-    andreas.deposit('savings', 100)
-    andreas.accounts['savings'].deposit(100)
-    andreas.deposit('salary', 20)
+    ricky.deposit('savings', 100)
+    ricky.accounts['savings'].deposit(100)
+    ricky.deposit('salary', 20)
 
     # Make a withdrawal if sufficient funds
-    andreas.withdraw('savings', 50)
+    ricky.withdraw('savings', 50)
 
-    # Throws an exception with explanation
-    andreas.withdraw('salary', 30)
+    # Prints an exception with explanation
+    ricky.withdraw('salary', 30)
+    ricky.accounts['salary'].withdraw(30)
 
 
 def simple_banking_management_functional():
-
-    # Initiate generator
 
     create_user('private', **USERS['Andreas'])
     create_user('company', **USERS['carrot_inc'])
@@ -75,5 +73,5 @@ def simple_banking_management_functional():
 
 
 if __name__ == "__main__":
-    simple_banking_management_functional()
     simple_banking_management_oop()
+    # simple_banking_management_functional()
